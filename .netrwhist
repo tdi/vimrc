@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/tdi/VIM'
 let g:netrw_dirhist_2='/home/tdi/.ssh'
 let g:netrw_dirhist_3='/home/tdi/.vim/ftplugin/python'
+let g:netrw_dirhist_4='/home/tdi/.vimold/plugin'
+let g:netrw_dirhist_5='/home/tdi/.vimold/ftplugin/python'
