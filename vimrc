@@ -1,6 +1,7 @@
 call pathogen#infect()
 set nocompatible
 set laststatus=2 
+set pastetoggle=<F2>
 let g:Powerline_symbols = 'unicode'
 syntax on
 " Set paste psuje IAMPS w latex
