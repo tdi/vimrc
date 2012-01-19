@@ -1,12 +1,12 @@
 call pathogen#infect()
 set nocompatible
 set laststatus=2 
-set pastetoggle=<F2>
 let g:Powerline_symbols = 'unicode'
 syntax on
-" Set paste psuje IAMPS w latex
+
+" Set paste psuje IMAPS w latex
 " set paste
-set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+"set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " NERD
 nmap <silent> <c-n> :NERDTreeToggle<CR> 
