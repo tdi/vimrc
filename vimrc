@@ -67,3 +67,23 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" From reddit.com, user stack_underflow
+" http://www.reddit.com/r/vim/comments/p0ibb/vim_plugin_that_shows_a_userdefinable_quick/
+
+nnoremap <F1> :call ToggleVimReference()<CR> 
+let g:vim_reference_file = "~/.vim/vim-reference"
+let g:vim_reference_width = 45
+
+function! ToggleVimReference()
+    if !exists("s:vim_reference_open") || s:vim_reference_open == 0
+        let s:vim_reference_open = 1
+        execute "botright vnew " . g:vim_reference_file
+        execute "vertical resize " . g:vim_reference_width
+        let s:vim_reference_window = winnr()
+    else
+        execute s:vim_reference_window . "wincmd c"
+        let s:vim_reference_open = 0
+    endif
+endfunction
+
