@@ -38,6 +38,7 @@ colorscheme wombatterm
 :map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
 :map <C-K> <Esc>:!pdflatex.sh -kk "%:p"<CR>
 
+
 " taby i linie
 set autoindent
 set smartindent
@@ -86,4 +87,6 @@ function! ToggleVimReference()
         let s:vim_reference_open = 0
     endif
 endfunction
+
+
 
