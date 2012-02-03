@@ -19,3 +19,6 @@
 [submodule "bundle/prolog.git"]
 	path = bundle/prolog.git
 	url = git://github.com/adimit/prolog.vim.git
+[submodule "bundle/minibufexpl.git"]
+	path = bundle/minibufexpl.git
+	url = git://github.com/fholgado/minibufexpl.vim.git
