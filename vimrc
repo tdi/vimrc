@@ -3,7 +3,7 @@ set nocompatible
 set laststatus=2 
 let g:Powerline_symbols = 'unicode'
 syntax on
-
+" TODO: lalall
 " Set paste psuje IMAPS w latex
 " set paste
 "set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
@@ -13,11 +13,12 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 " Tasklist
-map ta <Plug>TaskList
+map ta <Plug>TaskList<CR>
 let g:tlTokenList = ['CITE', 'TODO', 'PROF']
 set autochdir
 set directory=/tmp
 set wildmenu
+set wildmode=longest,list
 set showcmd
 " dla LaTeX
 filetype plugin on
@@ -52,6 +53,7 @@ set smartcase
 set incsearch
 set ai
 set si
+
 
 
 " włączenie (zp) i wyłączenie (zP) korekty pisowni dla j.polskiego
