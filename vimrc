@@ -1,3 +1,4 @@
+
 call pathogen#infect()
 set nocompatible
 set laststatus=2 
@@ -7,6 +8,11 @@ syntax on
 " Set paste psuje IMAPS w latex
 " set paste
 "set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+
+"GUI
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+
 
 " NERD
 nmap <silent> <c-n> :NERDTreeToggle<CR> 
@@ -29,7 +35,8 @@ let g:tex_flavor='latex'
 set ofu=syntaxcomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-colorscheme wombatterm
+colorscheme vividchalk
+"colorscheme wombatterm
 " ustawienie foldingu wierszy
 :map <C-o> zo
 :map <C-c> zc
@@ -38,6 +45,7 @@ colorscheme wombatterm
 :map <C-I> <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
 :map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
 :map <C-K> <Esc>:!pdflatex.sh -kk "%:p"<CR>
+:map open <Esc>:!wget http://192.168.1.10:5000 -o /dev/null<CR>
 
 
 " taby i linie
@@ -77,6 +85,12 @@ map <c-h> <c-w>h
 nnoremap <F1> :call ToggleVimReference()<CR> 
 let g:vim_reference_file = "~/.vim/vim-reference"
 let g:vim_reference_width = 45
+
+function! OpenDoor()
+ 
+
+endfunction
+
 
 function! ToggleVimReference()
     if !exists("s:vim_reference_open") || s:vim_reference_open == 0
