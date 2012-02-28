@@ -3,7 +3,6 @@ call pathogen#infect()
 set nocompatible
 set laststatus=2 
 let g:Powerline_symbols = 'unicode'
-set guifont=Monospace\ 8
 syntax on
 " TODO: lalall
 " Set paste psuje IMAPS w latex
