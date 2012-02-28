@@ -17,6 +17,9 @@ set guioptions-=r  "remove right-hand scroll bar
 nmap <silent> <c-n> :NERDTreeToggle<CR> 
 nnoremap <silent> <F8> :TlistToggle<CR>
 
+"LaTeX
+let g:Tex_CompileRule_pdf = 'pdflatex.sh +3 +b +o $*'
+
 " Tasklist
 let g:tlTokenList = ['CITE', 'TODO', 'PROF','FIXME','ADD']
 set autochdir
@@ -27,7 +30,7 @@ set showcmd
 " dla LaTeX
 filetype plugin on
 set grepprg=grep\ -nH\ $*
-filetype indent on
+ filetype indent on
 let g:tex_flavor='latex'
 
 set ofu=syntaxcomplete#Complete
