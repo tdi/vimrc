@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/tdi/VIM'
 let g:netrw_dirhist_2='/home/tdi/.ssh'
 let g:netrw_dirhist_3='/home/tdi/.vim/ftplugin/python'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/tdi/.vimold/ftplugin/python'
 let g:netrw_dirhist_6='/home/tdi/documents/Notes/Home'
 let g:netrw_dirhist_7='/home/tdi/.vifm/colors'
 let g:netrw_dirhist_8='/home/tdi/.vim'
+let g:netrw_dirhist_9='/home/tdi/.vim/bundle/vim-latex-git/ftplugin/latex-suite'

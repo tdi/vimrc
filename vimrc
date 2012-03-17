@@ -4,6 +4,7 @@ set nocompatible
 set laststatus=2 
 let g:Powerline_symbols = 'unicode'
 syntax on
+
 " TODO: lalall
 " Set paste psuje IMAPS w latex
 " set paste
@@ -44,6 +45,9 @@ colorscheme vividchalk
 " ESC to jj
 imap jj <Esc>
 
+"tab navigation
+:map <S-h> gT
+:map <S-l> gt
 " wykonanie komendy Ctrl+B Michała Kalewskiego (3 przebiegi, bibtex, otwarcie)
 :map <C-I> <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
 :map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
@@ -75,6 +79,28 @@ map zE :setlocal nospell<CR>
 
 " From reddit.com, user stack_underflow
 " http://www.reddit.com/r/vim/comments/p0ibb/vim_plugin_that_shows_a_userdefinable_quick/
+
+nnoremap <F3> :call SearchText()<CR>
+
+function! SearchText()
+  let s:curline = strpart(getline('.'), 0, col('.'))
+  let s:prefix = matchstr(s:curline, '.*{\zs.\{-}\(}\|$\)')
+  let pattern = '.*\\\(\w\{-}\)\(\[.\{-}\]\)*{\([^ [\]\t]\+\)\?$'
+  if s:curline =~ pattern
+    let s:type = substitute(s:curline, pattern, '\1', 'e')
+    let s:typeoption = substitute(s:curline, pattern, '\2', 'e')
+  endif
+if exists("s:type") && s:type =~ 'cite'
+  if  !exists("s:vim_open_window") || s:vim_open_window == 0
+    let s:vim_open_window = 1
+    execute "botright new " . "bib.bib"
+    let s:bibwin = winnr()
+  else
+    execute s:bibwin . "wincmd c"
+    let s:vim_open_window = 0 
+  endif
+endif
+endfunction 
 
 nnoremap <F1> :call ToggleVimReference()<CR> 
 let g:vim_reference_file = "~/.vim/vim-reference"

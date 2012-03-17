@@ -25,3 +25,15 @@
 [submodule "bundle/vim-latex-git"]
 	path = bundle/vim-latex-git
 	url = git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex
+[submodule "bundle/ctrlp.vim.git"]
+	path = bundle/ctrlp.vim.git
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "bundle/vim-css-color.git"]
+	path = bundle/vim-css-color.git
+	url = git://github.com/skammer/vim-css-color.git
+[submodule "bundle/vimwiki.git"]
+	path = bundle/vimwiki.git
+	url = git://github.com/vim-scripts/vimwiki.git
+[submodule "bundle/vilitex.git"]
+	path = bundle/vilitex.git
+	url = git@bitbucket.org:tdi/vilitex.git
