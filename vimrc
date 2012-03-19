@@ -18,8 +18,6 @@ set guioptions-=r  "remove right-hand scroll bar
 nmap <silent> <c-n> :NERDTreeToggle<CR> 
 nnoremap <silent> <F8> :TlistToggle<CR>
 
-"LaTeX
-let g:Tex_CompileRule_pdf = 'pdflatex.sh +3 +b +o $*'
 
 " Tasklist
 let g:tlTokenList = ['CITE', 'TODO', 'PROF','FIXME','ADD']
@@ -28,11 +26,10 @@ set directory=/tmp
 set wildmenu
 set wildmode=longest,list
 set showcmd
-" dla LaTeX
+
 filetype plugin on
 set grepprg=grep\ -nH\ $*
  filetype indent on
-let g:tex_flavor='latex'
 
 set ofu=syntaxcomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -49,9 +46,9 @@ imap jj <Esc>
 :map <S-h> gT
 :map <S-l> gt
 " wykonanie komendy Ctrl+B Michała Kalewskiego (3 przebiegi, bibtex, otwarcie)
-:map <C-I> <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
-:map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
-:map <C-K> <Esc>:!pdflatex.sh -kk "%:p"<CR>
+":map <C-I> <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
+":map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
+":map <C-K> <Esc>:!pdflatex.sh -kk "%:p"<CR>
 
 " taby i linie
 set autoindent
@@ -79,28 +76,6 @@ map zE :setlocal nospell<CR>
 
 " From reddit.com, user stack_underflow
 " http://www.reddit.com/r/vim/comments/p0ibb/vim_plugin_that_shows_a_userdefinable_quick/
-
-nnoremap <F3> :call SearchText()<CR>
-
-function! SearchText()
-  let s:curline = strpart(getline('.'), 0, col('.'))
-  let s:prefix = matchstr(s:curline, '.*{\zs.\{-}\(}\|$\)')
-  let pattern = '.*\\\(\w\{-}\)\(\[.\{-}\]\)*{\([^ [\]\t]\+\)\?$'
-  if s:curline =~ pattern
-    let s:type = substitute(s:curline, pattern, '\1', 'e')
-    let s:typeoption = substitute(s:curline, pattern, '\2', 'e')
-  endif
-if exists("s:type") && s:type =~ 'cite'
-  if  !exists("s:vim_open_window") || s:vim_open_window == 0
-    let s:vim_open_window = 1
-    execute "botright new " . "bib.bib"
-    let s:bibwin = winnr()
-  else
-    execute s:bibwin . "wincmd c"
-    let s:vim_open_window = 0 
-  endif
-endif
-endfunction 
 
 nnoremap <F1> :call ToggleVimReference()<CR> 
 let g:vim_reference_file = "~/.vim/vim-reference"

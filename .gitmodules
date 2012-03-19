@@ -22,9 +22,6 @@
 [submodule "bundle/minibufexpl.vim.git"]
 	path = bundle/minibufexpl.vim.git
 	url = https://github.com/fholgado/minibufexpl.vim.git
-[submodule "bundle/vim-latex-git"]
-	path = bundle/vim-latex-git
-	url = git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex
 [submodule "bundle/ctrlp.vim.git"]
 	path = bundle/ctrlp.vim.git
 	url = git://github.com/kien/ctrlp.vim.git
@@ -34,6 +31,6 @@
 [submodule "bundle/vimwiki.git"]
 	path = bundle/vimwiki.git
 	url = git://github.com/vim-scripts/vimwiki.git
-[submodule "bundle/vilitex.git"]
-	path = bundle/vilitex.git
-	url = git@bitbucket.org:tdi/vilitex.git
+[submodule "bundle/ddLaTeX-Box.g"]
+	path = bundle/ddLaTeX-Box.g
+	url = git@github.com:tdi/ddLaTeX-Box.git
