@@ -34,3 +34,6 @@
 [submodule "bundle/ddLaTeX-Box.g"]
 	path = bundle/ddLaTeX-Box.g
 	url = git@github.com:tdi/ddLaTeX-Box.git
+[submodule "bundle/vim-colors-solarized"]
+	path = bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git

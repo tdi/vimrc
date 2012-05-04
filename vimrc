@@ -1,4 +1,3 @@
-
 call pathogen#infect()
 set nocompatible
 set laststatus=2 
@@ -29,13 +28,22 @@ set showcmd
 
 filetype plugin on
 set grepprg=grep\ -nH\ $*
- filetype indent on
+filetype indent on
 
-set ofu=syntaxcomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+"set ofu=syntaxcomplete#Complete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-colorscheme vividchalk
-"colorscheme wombatterm
+
+if has('gui_running')
+  let g:solarized_termcolors=256
+  colorscheme solarized
+  set background=dark
+else
+  colorscheme wombatterm
+"  set background=dark
+endif
+
+" colorscheme wombatterm
 " ustawienie foldingu wierszy
 :map <C-o> zo
 :map <C-c> zc
@@ -74,24 +82,14 @@ map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
 map zE :setlocal nospell<CR>
 
-" From reddit.com, user stack_underflow
-" http://www.reddit.com/r/vim/comments/p0ibb/vim_plugin_that_shows_a_userdefinable_quick/
 
-nnoremap <F1> :call ToggleVimReference()<CR> 
-let g:vim_reference_file = "~/.vim/vim-reference"
-let g:vim_reference_width = 45
+noremap <C-left> :bprev<CR> 
+noremap <C-right> :bnext<CR> 
 
-function! ToggleVimReference()
-    if !exists("s:vim_reference_open") || s:vim_reference_open == 0
-        let s:vim_reference_open = 1
-        execute "botright vnew " . g:vim_reference_file
-        execute "vertical resize " . g:vim_reference_width
-        let s:vim_reference_window = winnr()
-    else
-        execute s:vim_reference_window . "wincmd c"
-        let s:vim_reference_open = 0
-    endif
-endfunction
-
-
+if $TERM =~ '^screen-256color'
+    map <Esc>OH <Home>
+    map! <Esc>OH <Home>
+    map <Esc>OF <End>
+    map! <Esc>OF <End>
+endif
 

@@ -12,7 +12,7 @@ if has("gui_running")
 endif
 hi clear
 if exists("syntax_on")
-   syntax reset
+"   syntax reset
 endif
 
 let colors_name = "vividchalk"
