@@ -1,6 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/tdi/.vim/bundle/python/ftplugin/python'
-let g:netrw_dirhist_2='/home/tdi/.vim/bundle/vim-colors-solarized/colors'
-let g:netrw_dirhist_3='/home/tdi/.vim'
-let g:netrw_dirhist_4='/home/tdi/.vim/bundle/python/ftplugin/python'
+let g:netrw_dirhist_cnt =0

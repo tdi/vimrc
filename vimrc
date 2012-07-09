@@ -32,6 +32,7 @@ filetype indent on
 
 "set ofu=syntaxcomplete#Complete
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 
 if has('gui_running')
@@ -92,4 +93,14 @@ if $TERM =~ '^screen-256color'
     map <Esc>OF <End>
     map! <Esc>OF <End>
 endif
+
+
+
+" Python
+let g:pymode_lint_write = 0
+let g:pymode_folding = 0
+let g:pymode_motion = 1
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+
 
