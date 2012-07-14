@@ -14,9 +14,8 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 
 " NERD
-nmap <silent> <c-n> :NERDTreeToggle<CR> 
-nnoremap <silent> <F8> :TlistToggle<CR>
-
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <F8> :TagbarToggle<CR>
 
 " Tasklist
 let g:tlTokenList = ['CITE', 'TODO', 'PROF','FIXME','ADD']
@@ -32,8 +31,6 @@ filetype indent on
 
 "set ofu=syntaxcomplete#Complete
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
 
 if has('gui_running')
   let g:solarized_termcolors=256
