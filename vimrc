@@ -51,10 +51,6 @@ imap jj <Esc>
 "tab navigation
 :map <S-h> gT
 :map <S-l> gt
-" wykonanie komendy Ctrl+B Michała Kalewskiego (3 przebiegi, bibtex, otwarcie)
-":map <C-I> <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
-":map <C-B> <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
-":map <C-K> <Esc>:!pdflatex.sh -kk "%:p"<CR>
 
 " taby i linie
 set autoindent
