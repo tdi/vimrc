@@ -1,4 +1,5 @@
 call pathogen#infect()
+
 set nocompatible
 set laststatus=2 
 let g:Powerline_symbols = 'unicode'
@@ -43,14 +44,22 @@ endif
 
 " colorscheme wombatterm
 " ustawienie foldingu wierszy
-:map <C-o> zo
-:map <C-c> zc
+map <C-o> zo
+map <C-c> zc
 " ESC to jj
 imap jj <Esc>
 
 "tab navigation
-:map <S-h> gT
-:map <S-l> gt
+map <S-h> gT
+map <S-l> gt
+
+" minibuf
+"let g:miniBufExplorerMoreThanOne=1
+map <Leader>p :TMiniBufExplorer<cr>
+
+
+map <C-h> :bprev<CR> 
+map <C-l> :bnext<CR>
 
 " taby i linie
 set autoindent
@@ -77,8 +86,6 @@ map zus :setlocal spell spelllang=en_us<CR>
 map zE :setlocal nospell<CR>
 
 
-noremap <C-left> :bprev<CR> 
-noremap <C-right> :bnext<CR> 
 
 if $TERM =~ '^screen-256color'
     map <Esc>OH <Home>
