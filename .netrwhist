@@ -1,7 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/etc/modules-load.d'
 let g:netrw_dirhist_2='/home/tdi/.vim/bundle/buftabs'
 let g:netrw_dirhist_3='/home/tdi/.vim/bundle/buftabs/plugin'
 let g:netrw_dirhist_4='/home/tdi/dev/podsal_alg/pepa_parser'
 let g:netrw_dirhist_5='/home/tdi/.vim/bundle/buftabs/plugin'
+let g:netrw_dirhist_6='/home/tdi/.vim/bundle/python-mode.git/plugin'
+let g:netrw_dirhist_7='/etc/modules-load.d'
+let g:netrw_dirhist_8='/home/tdi/.dropbox'
