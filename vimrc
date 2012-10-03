@@ -5,10 +5,10 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 syntax on
 
-" TODO: lalall
 " Set paste psuje IMAPS w latex
 " set paste
 "set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+
 
 "GUI
 set guioptions-=T  "remove toolbar
