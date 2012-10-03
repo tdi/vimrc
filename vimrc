@@ -83,7 +83,6 @@ map zP :setlocal nospell<CR>
 map ze :setlocal spell spelllang=en<CR>
 map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
-map zE :setlocal nospell<CR>
 
 
 
