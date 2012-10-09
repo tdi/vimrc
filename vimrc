@@ -48,7 +48,7 @@ map <C-o> zo
 map <C-c> zc
 " ESC to jj
 imap jj <Esc>
-
+cmap w!! %!sudo tee > /dev/null %
 "tab navigation
 map <S-h> gT
 map <S-l> gt
