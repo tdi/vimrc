@@ -56,6 +56,10 @@ map <S-l> gt
 " minibuf
 "let g:miniBufExplorerMoreThanOne=1
 map <Leader>p :TMiniBufExplorer<cr>
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+
+
 
 
 map <C-h> :bprev<CR> 
