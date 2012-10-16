@@ -11,4 +11,6 @@ set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 "set omnifunc=pythoncomplete#Complete
 set formatoptions=cq textwidth=72 foldignore= wildignore+=*.py[co]
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
 

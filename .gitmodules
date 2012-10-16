@@ -37,3 +37,6 @@
 [submodule "bundle/buftabs.git"]
 	path = bundle/buftabs.git
 	url = https://github.com/vim-scripts/buftabs.git
+[submodule "bundle/jedi-vim.git"]
+	path = bundle/jedi-vim.git
+	url = https://github.com/davidhalter/jedi-vim.git
