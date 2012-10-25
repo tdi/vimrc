@@ -13,4 +13,6 @@ set formatoptions=cq textwidth=72 foldignore= wildignore+=*.py[co]
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
+let g:jedi#auto_clone_doc=1
+let g:jedi#popup_on_dot=0
 

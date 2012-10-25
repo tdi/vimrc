@@ -53,15 +53,6 @@ cmap w!! %!sudo tee > /dev/null %
 map <S-h> gT
 map <S-l> gt
 
-" minibuf
-"let g:miniBufExplorerMoreThanOne=1
-map <Leader>p :TMiniBufExplorer<cr>
-let g:miniBufExplModSelTarget = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-
-
-
-
 map <C-h> :bprev<CR> 
 map <C-l> :bnext<CR>
 
@@ -100,10 +91,17 @@ endif
 
 
 " Python
-let g:pymode_lint_write = 0
-let g:pymode_folding = 0
-let g:pymode_motion = 1
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
 
-
+let g:jedi#auto_initialization = 1
+let g:jedi#show_function_definition = 0
+let g:jedi#popup_on_dot = 0
+" let g:pymode_lint_write = 0
+" let g:pymode_folding = 0
+" let g:pymode_motion = 1
+" let g:pymode_syntax = 1
+" let g:pymode_syntax_all = 1
+" let g:pymode_rope_extended_complete = 0
+" let g:pymode_rope_vim_completion = 0
+" let g:pymode_virtualenv = 1
+" 
+" 
