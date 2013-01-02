@@ -104,4 +104,29 @@ let g:jedi#popup_on_dot = 0
 " let g:pymode_rope_vim_completion = 0
 " let g:pymode_virtualenv = 1
 " 
-" 
+
+function! ToggleLineNumbering()
+  if(&number == 1)
+    set relativenumber
+    let b:inRelNumber = 1
+  else
+    set number
+    let b:inRelNumber = 0
+  endif
+endfunc
+
+function! ReturnLineNumbering()
+  if !exists("b:inRelNumber")
+    let b:inRelNumber = 0
+  endif
+  if b:inRelNumber
+    set relativenumber
+  endif
+endfunc
+
+let b:inRelNumber = 0
+noremap <silent> <F6> :call ToggleLineNumbering()<cr>
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * call ReturnLineNumbering()
+ 

@@ -37,3 +37,6 @@
 [submodule "bundle/jedi-vim.git"]
 	path = bundle/jedi-vim.git
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/vim-rails.git"]
+	path = bundle/vim-rails.git
+	url = git@github.com:tpope/vim-rails.git
