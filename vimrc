@@ -5,11 +5,6 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 syntax on
 
-" Set paste psuje IMAPS w latex
-" set paste
-"set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
-
-
 "GUI
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
@@ -18,9 +13,8 @@ set guioptions-=r  "remove right-hand scroll bar
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 nmap <silent> <F8> :TagbarToggle<CR>
 
-" Tasklist
-let g:tlTokenList = ['CITE', 'TODO', 'PROF','FIXME','ADD']
 set autochdir
+" directory for swp files
 set directory=/tmp
 set wildmenu
 set wildmode=longest,list
@@ -29,9 +23,8 @@ set showcmd
 filetype plugin on
 set grepprg=grep\ -nH\ $*
 filetype indent on
-
-"set ofu=syntaxcomplete#Complete
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
+" set mouse in terminal to resize windows
+set mouse=a
 
 if has('gui_running')
   let g:solarized_termcolors=256
@@ -43,20 +36,19 @@ else
 endif
 
 " colorscheme wombatterm
-" ustawienie foldingu wierszy
-map <C-o> zo
-map <C-c> zc
-" ESC to jj
-imap jj <Esc>
 cmap w!! %!sudo tee > /dev/null %
 "tab navigation
-map <S-h> gT
-map <S-l> gt
+"from Practical Vim book
+nnoremap <silent> <C-h> :bprev<CR> 
+nnoremap <silent> <C-l> :bnext<CR>
+nnoremap <silent> [b :bprev<CR> 
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
-map <C-h> :bprev<CR> 
-map <C-l> :bnext<CR>
-
-" taby i linie
+" highlight search matching
+set hlsearch
+" tabs and firends
 set autoindent
 set smartindent
 set expandtab
@@ -79,8 +71,6 @@ map ze :setlocal spell spelllang=en<CR>
 map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
 
-
-
 if $TERM =~ '^screen-256color'
     map <Esc>OH <Home>
     map! <Esc>OH <Home>
@@ -88,45 +78,20 @@ if $TERM =~ '^screen-256color'
     map! <Esc>OF <End>
 endif
 
+" Until I got used to it 
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 
+imap jj <Esc>
 
 " Python
-
 let g:jedi#auto_initialization = 1
 let g:jedi#show_function_definition = 0
 let g:jedi#popup_on_dot = 0
-" let g:pymode_lint_write = 0
-" let g:pymode_folding = 0
-" let g:pymode_motion = 1
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_all = 1
-" let g:pymode_rope_extended_complete = 0
-" let g:pymode_rope_vim_completion = 0
-" let g:pymode_virtualenv = 1
-" 
 
-function! ToggleLineNumbering()
-  if(&number == 1)
-    set relativenumber
-    let b:inRelNumber = 1
-  else
-    set number
-    let b:inRelNumber = 0
-  endif
-endfunc
-
-function! ReturnLineNumbering()
-  if !exists("b:inRelNumber")
-    let b:inRelNumber = 0
-  endif
-  if b:inRelNumber
-    set relativenumber
-  endif
-endfunc
-
-let b:inRelNumber = 0
-noremap <silent> <F6> :call ToggleLineNumbering()<cr>
-
-autocmd InsertEnter * :set number
-autocmd InsertLeave * call ReturnLineNumbering()
- 
