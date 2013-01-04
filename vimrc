@@ -5,9 +5,6 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 syntax on
 
-"GUI
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
 
 " NERD
 nmap <silent> <c-n> :NERDTreeToggle<CR>
@@ -19,14 +16,17 @@ set directory=/tmp
 set wildmenu
 set wildmode=longest,list
 set showcmd
-
+set pastetoggle=<F10>
 filetype plugin on
 set grepprg=grep\ -nH\ $*
-filetype indent on
+filetype indent on 
 " set mouse in terminal to resize windows
 set mouse=a
 
+"GUI
 if has('gui_running')
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
   let g:solarized_termcolors=256
   colorscheme solarized
   set background=dark
@@ -35,7 +35,6 @@ else
 "  set background=dark
 endif
 
-" colorscheme wombatterm
 cmap w!! %!sudo tee > /dev/null %
 "tab navigation
 "from Practical Vim book
