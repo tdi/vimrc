@@ -16,6 +16,7 @@ set directory=/tmp
 set wildmenu
 set wildmode=longest,list
 set showcmd
+set showmatch
 set pastetoggle=<F10>
 filetype plugin on
 set grepprg=grep\ -nH\ $*
