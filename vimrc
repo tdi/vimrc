@@ -46,6 +46,8 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
+" Reselect last pasted text
+nnoremap gp `[v`]
 " highlight search matching
 set hlsearch
 " tabs and firends
@@ -54,7 +56,7 @@ set smartindent
 set expandtab
 set tabstop=2
 set shiftwidth=2
-set textwidth=79
+set textwidth=100
 
 set ignorecase 
 set smartcase
