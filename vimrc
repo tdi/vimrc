@@ -1,7 +1,5 @@
 call pathogen#infect()
 
-set nocompatible
-set laststatus=2 
 let g:Powerline_symbols = 'unicode'
 syntax on
 
@@ -10,6 +8,18 @@ syntax on
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 nmap <silent> <F8> :TagbarToggle<CR>
 
+set nocompatible
+set hlsearch
+" tabs and firends
+set autoindent
+set smartindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set textwidth=100
+set ignorecase 
+set smartcase
+set incsearch
 set autochdir
 " directory for swp files
 set directory=/tmp
@@ -23,6 +33,7 @@ set grepprg=grep\ -nH\ $*
 filetype indent on 
 " set mouse in terminal to resize windows
 set mouse=a
+set laststatus=2 
 
 "GUI
 if has('gui_running')
@@ -49,21 +60,6 @@ nnoremap <silent> ]B :blast<CR>
 " Reselect last pasted text
 nnoremap gp `[v`]
 " highlight search matching
-set hlsearch
-" tabs and firends
-set autoindent
-set smartindent
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set textwidth=100
-
-set ignorecase 
-set smartcase
-set incsearch
-set ai
-set si
-
 " włączenie (zp) i wyłączenie (zP) korekty pisowni dla j.polskiego
 map zp :setlocal spell spelllang=pl<CR>
 map zP :setlocal nospell<CR>
@@ -91,7 +87,9 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
 imap jj <Esc>
-
+nnoremap <S-CR> O<Esc>
+nnoremap <CR> o<Esc>
+map <Esc>OM <S-CR>
 " Python
 let g:jedi#auto_initialization = 1
 let g:jedi#show_function_definition = 0
