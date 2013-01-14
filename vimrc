@@ -76,6 +76,23 @@ if $TERM =~ '^screen-256color'
     map! <Esc>OF <End>
 endif
 
+set cursorline
+set cursorcolumn
+
+fu! ToggleCurline ()
+  if &cursorline && &cursorcolumn 
+    set nocursorline
+    set nocursorcolumn
+  else
+    set cursorline
+    set cursorcolumn
+  endif
+endfunction
+
+map <silent><leader>cl :call ToggleCurline()<CR>
+
+
+
 " Until I got used to it 
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
