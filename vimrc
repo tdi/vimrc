@@ -91,9 +91,7 @@ endfunction
 
 map <silent><leader>cl :call ToggleCurline()<CR>
 
-
-
-" Until I got used to it 
+" Until I got used to it
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
@@ -109,6 +107,7 @@ nnoremap <CR> o<Esc>
 map <Esc>OM <S-CR>
 " Python
 let g:jedi#auto_initialization = 1
-let g:jedi#show_function_definition = 0
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#show_function_definition = "0"
 let g:jedi#popup_on_dot = 0
 
