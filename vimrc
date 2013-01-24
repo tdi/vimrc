@@ -43,8 +43,13 @@ if has('gui_running')
   colorscheme solarized
   set background=dark
 else
-  colorscheme wombatterm
-"  set background=dark
+  if $TERM =~ '^xterm-256color'
+    colorscheme wombatterm
+  elseif $TERM =~ '^screen'
+    colorscheme wombatterm
+  else
+    colorscheme vividchalk 
+  endif
 endif
 
 cmap w!! %!sudo tee > /dev/null %
@@ -111,3 +116,4 @@ let g:jedi#auto_vim_configuration = 1
 let g:jedi#show_function_definition = "0"
 let g:jedi#popup_on_dot = 0
 
+" au BufRead,BufNewFile *.pepa setfiletype pepa
