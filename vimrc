@@ -116,4 +116,6 @@ let g:jedi#auto_vim_configuration = 1
 let g:jedi#show_function_definition = "0"
 let g:jedi#popup_on_dot = 0
 
-" au BufRead,BufNewFile *.pepa setfiletype pepa
+hi OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+     
