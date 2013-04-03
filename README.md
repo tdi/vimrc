@@ -12,11 +12,11 @@ Plugins
 
 It also has: buftabs, powerline, tasklist, vim-indent-object, vim-surround, vimwiki.
 
-If you do not want to use only hjkl, just remove these mapping from `.vimrc`. 
+If you do not want to use only `hjkl`, just remove these mapping from `.vimrc`. 
 
 Other mappings:
 
-* `Ctrl-[hjkl]` will move arounf buffers
+* `Ctrl-[hjkl]` will move around buffers
 * `\be` bufexplorer
 * `\cl` will toggle curline mode on or off
 * `F10` toggles paste mode (you can now paste with mouse in insert mode)
