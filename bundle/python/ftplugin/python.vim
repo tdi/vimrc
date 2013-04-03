@@ -14,4 +14,6 @@ let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 let g:jedi#auto_clone_doc=1
 let g:jedi#popup_on_dot=0
+hi OverLength ctermbg=darkred ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
