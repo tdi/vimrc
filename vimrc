@@ -1,7 +1,7 @@
 call pathogen#infect()
 
-" let g:Powerline_symbols = 'unicode'
-" set rtp+=/home/tdi/.local/lib/python3.3/site-packages/powerline/bindings/vim
+let g:Powerline_symbols = 'unicode'
+set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 
 
