@@ -4,9 +4,6 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = git://github.com/tomtom/tcomment_vim.git
-[submodule "bundle/vimwiki.git"]
-	path = bundle/vimwiki.git
-	url = git://github.com/vim-scripts/vimwiki.git
 [submodule "bundle/ddLaTeX-Box.g"]
 	path = bundle/ddLaTeX-Box.g
   url = https://github.com/tdi/ddLaTeX-Box.git
