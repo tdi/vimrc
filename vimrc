@@ -1,9 +1,10 @@
 call pathogen#infect()
+let g:pathogen_disabled = ['vim-rails.git']
 
 let g:Powerline_symbols = 'unicode'
 set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
-
+set regexpengine=1
 
 " NERD
 nmap <silent> <c-n> :NERDTreeToggle<CR>
@@ -112,9 +113,9 @@ nnoremap <S-CR> O<Esc>
 nnoremap <CR> o<Esc>
 map <Esc>OM <S-CR>
 " Python
-let g:jedi#auto_initialization = 1
+let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 1
-let g:jedi#show_function_definition = "0"
+let g:jedi#show_call_signatures = "0"
 let g:jedi#popup_on_dot = 0
 
      
