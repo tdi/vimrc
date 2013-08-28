@@ -43,3 +43,6 @@
 [submodule "bundle/bufexplorer.git"]
 	path = bundle/bufexplorer.git
 	url = https://github.com/vim-scripts/bufexplorer.zip
+[submodule "bundle/CSApprox"]
+	path = bundle/CSApprox
+	url = https://github.com/godlygeek/csapprox
