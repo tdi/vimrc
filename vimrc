@@ -1,8 +1,8 @@
 call pathogen#infect()
 let g:pathogen_disabled = ['vim-rails.git']
 
-let g:Powerline_symbols = 'unicode'
-set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
+" let g:Powerline_symbols = 'unicode'
+" set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 set regexpengine=1
 

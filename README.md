@@ -10,7 +10,7 @@ Plugins
 * supertab for Tab completion (just use Tab, it will detect which mode is the best)
 
 
-It also has: buftabs, powerline,vim-indent-object, vim-surround, zoomwin.
+It also has: buftabs,vim-airline ,vim-indent-object, vim-surround, zoomwin.
 
 If you do not want to use only `hjkl`, just remove these mapping from `.vimrc`. 
 
