@@ -119,4 +119,8 @@ let g:jedi#show_call_signatures = "0"
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 
-     
+" Airline
+"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'wombat'
+let g:airline#extensions#tabline#buffer_nr_show = 0
