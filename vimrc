@@ -4,7 +4,10 @@ let g:pathogen_disabled = ['vim-rails.git']
 " let g:Powerline_symbols = 'unicode'
 " set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
-set regexpengine=1
+" error in < 7.4
+if v:version > 704 
+  set regexpengine=1
+endif
 
 " NERD
 nmap <silent> <c-n> :NERDTreeToggle<CR>
