@@ -1,9 +1,9 @@
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, 'auto-pairs')
+call add(g:pathogen_disabled, 'CSApprox')
 call pathogen#infect()
-let g:pathogen_disabled = ['vim-rails.git']
-
-" let g:Powerline_symbols = 'unicode'
-" set rtp+=/home/tdi/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
+
 " error in < 7.4
 if v:version > 704 
   set regexpengine=1
@@ -122,6 +122,11 @@ let g:jedi#show_call_signatures = "0"
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 
+
+"mutt
+"
+au BufRead /tmp/mutt-* set tw=72
+imap <C-F> <ESC>:r!goobook_vim.sh <cword><CR><ESC>
 " Airline
 "
 let g:airline#extensions#tabline#enabled = 1
