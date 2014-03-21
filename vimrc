@@ -1,6 +1,15 @@
 let g:pathogen_disabled = []
-call add(g:pathogen_disabled, 'auto-pairs')
-call add(g:pathogen_disabled, 'CSApprox')
+let where = "server"
+
+if where == "desktop"
+  call add(g:pathogen_disabled, 'auto-pairs')
+  call add(g:pathogen_disabled, 'CSApprox')
+elseif where == "server"
+  call add(g:pathogen_disabled, 'auto-pairs')
+  call add(g:pathogen_disabled, 'vim-rails.git')
+  call add(g:pathogen_disabled, 'pepa')
+  call add(g:pathogen_disabled, 'ddLaTeX-Box.g')
+endif 
 call pathogen#infect()
 syntax on
 
