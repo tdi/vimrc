@@ -1,14 +1,12 @@
-let g:pathogen_disabled = []
 let where = "desktop"
-
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+if where == "desktop"
 Bundle 'gmarik/Vundle.vim'
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/csapprox'
-Bundle 'ekalinin/Dockerfile'
+Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'vim-scripts/Auto-Pairs'
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'scrooloose/nerdtree'
@@ -20,22 +18,12 @@ Bundle 'fatih/vim-go'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/ZoomWin'
-Bundle 'michaeljsmith/vim-indent-objec'
+Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'Valloric/YouCompleteMe'
+endif
 call vundle#end()
 
-if where == "desktop"
-  call add(g:pathogen_disabled, 'auto-pairs')
-  call add(g:pathogen_disabled, 'CSApprox')
-elseif where == "server"
-  call add(g:pathogen_disabled, 'auto-pairs')
-  call add(g:pathogen_disabled, 'vim-rails.git')
-  call add(g:pathogen_disabled, 'pepa')
-  call add(g:pathogen_disabled, 'ddLaTeX-Box.g')
-endif 
-" call pathogen#infect()
 syntax on
-
 " error in < 7.4
 if v:version > 704 
   set regexpengine=1
