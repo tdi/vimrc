@@ -1,57 +1,9 @@
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/tcomment"]
-	path = bundle/tcomment
-  url = https://github.com/tomtom/tcomment_vim.git
-[submodule "bundle/ddLaTeX-Box.g"]
-	path = bundle/ddLaTeX-Box.g
-  url = https://github.com/tdi/ddLaTeX-Box.git
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-  url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/python-mode.git"]
 	path = bundle/python-mode.git
   url = https://github.com/klen/python-mode.git
-[submodule "bundle/supertab.git"]
-	path = bundle/supertab.git
-	url = https://github.com/ervandew/supertab.git
-[submodule "bundle/tagbar.git"]
-	path = bundle/tagbar.git
-	url = https://github.com/majutsushi/tagbar
 [submodule "bundle/buftabs.git"]
 	path = bundle/buftabs.git
 	url = https://github.com/vim-scripts/buftabs.git
 [submodule "bundle/jedi-vim.git"]
 	path = bundle/jedi-vim.git
 	url = https://github.com/davidhalter/jedi-vim.git
-[submodule "bundle/vim-rails.git"]
-	path = bundle/vim-rails.git
-  url = https://github.com/tdi/ddLaTeX-Box.git
-[submodule "bundle/vim-surround.git"]
-	path = bundle/vim-surround.git
-  url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/vim-indent-object.git"]
-	path = bundle/vim-indent-object.git
-  url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule "bundle/ctrlp.git"]
-	path = bundle/ctrlp.git
-	url = https://github.com/kien/ctrlp.vim.git
-[submodule "bundle/bufexplorer.git"]
-	path = bundle/bufexplorer.git
-	url = https://github.com/vim-scripts/bufexplorer.zip
-[submodule "bundle/CSApprox"]
-	path = bundle/CSApprox
-	url = https://github.com/godlygeek/csapprox
-[submodule "bundle/zoomwin"]
-	path = bundle/zoomwin
-	url = https://github.com/vim-scripts/ZoomWin
-[submodule "bundle/vim-airline"]
-	path = bundle/vim-airline
-	url = https://github.com/bling/vim-airline
-[submodule "bundle/auto-pairs"]
-	path = bundle/auto-pairs
-	url = https://github.com/vim-scripts/Auto-Pairs
-[submodule "bundle/salt-vim"]
-	path = bundle/salt-vim
-	url = git@github.com:saltstack/salt-vim.git

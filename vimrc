@@ -1,5 +1,28 @@
 let g:pathogen_disabled = []
-let where = "server"
+let where = "desktop"
+
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Bundle 'gmarik/Vundle.vim'
+Bundle 'bling/vim-airline'
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/csapprox'
+Bundle 'ekalinin/Dockerfile'
+Bundle 'vim-scripts/Auto-Pairs'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'scrooloose/nerdtree'
+Bundle 'saltstack/salt-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'fatih/vim-go'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/ZoomWin'
+Bundle 'michaeljsmith/vim-indent-objec'
+Bundle 'Valloric/YouCompleteMe'
+call vundle#end()
 
 if where == "desktop"
   call add(g:pathogen_disabled, 'auto-pairs')
@@ -10,7 +33,7 @@ elseif where == "server"
   call add(g:pathogen_disabled, 'pepa')
   call add(g:pathogen_disabled, 'ddLaTeX-Box.g')
 endif 
-call pathogen#infect()
+" call pathogen#infect()
 syntax on
 
 " error in < 7.4
@@ -49,6 +72,7 @@ filetype indent on
 set mouse=a
 set laststatus=2 
 
+
 "GUI
 if has('gui_running')
   set guioptions-=T  "remove toolbar
@@ -57,10 +81,15 @@ if has('gui_running')
   colorscheme solarized
   set background=dark
 else
-  if $TERM =~ '^xterm-256color'
-    colorscheme wombatterm
+  if $TERM =~ '256color'
+    set background=light
+    let g:solarized_termcolors=256
+    colorscheme solarized
   elseif $TERM =~ '^screen'
-    colorscheme wombatterm
+    set background=light
+    let g:solarized_termcolors=256
+    colorscheme solarized
+    " colorscheme wombatterm
   else
     colorscheme vividchalk 
   endif
@@ -131,6 +160,24 @@ let g:jedi#show_call_signatures = "0"
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 
+" Go
+let mapleader = "\\"
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+
+
 
 "mutt
 "
@@ -141,3 +188,23 @@ imap <C-F> <ESC>:r!goobook_vim.sh <cword><CR><ESC>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#buffer_nr_show = 0
+
+""" FocusMode
+function! ToggleFocusMode()
+  if (&foldcolumn != 12)
+    set laststatus=0
+    set numberwidth=10
+    set foldcolumn=12
+    set noruler
+    hi FoldColumn ctermbg=none
+    hi LineNr ctermfg=0 ctermbg=none
+    hi NonText ctermfg=0
+  else
+    set laststatus=2
+    set numberwidth=4
+    set foldcolumn=0
+    set ruler
+    execute 'colorscheme ' . 'wombatterm'
+  endif
+endfunc
+nnoremap <F1> :call ToggleFocusMode()<cr>
