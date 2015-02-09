@@ -19,6 +19,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 endif
 call vundle#end()
