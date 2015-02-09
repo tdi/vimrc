@@ -141,12 +141,6 @@ imap jj <Esc>
 nnoremap <S-CR> O<Esc>
 nnoremap <CR> o<Esc>
 map <Esc>OM <S-CR>
-" Python
-let g:jedi#auto_initialization = 1
-let g:jedi#auto_vim_configuration = 1
-let g:jedi#show_call_signatures = "0"
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_tabs_not_buffers = 0
 
 " Go
 let mapleader = "\\"
