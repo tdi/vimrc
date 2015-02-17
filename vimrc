@@ -4,10 +4,8 @@ call vundle#begin()
 if where == "desktop"
 Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
 Plugin 'godlygeek/csapprox'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/nerdtree'
 Plugin 'saltstack/salt-vim'
@@ -23,6 +21,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 endif
 call vundle#end()
+
+map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
+map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
+map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
+map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
 
 syntax on
 " error in < 7.4
