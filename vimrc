@@ -9,6 +9,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/nerdtree'
 Plugin 'saltstack/salt-vim'
+Plugin 'chase/vim-ansible-yaml'
 Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'altercation/vim-colors-solarized'
@@ -19,6 +20,7 @@ Plugin 'vim-scripts/ZoomWin'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'nvie/vim-rst-tables'
 endif
 call vundle#end()
 
@@ -26,6 +28,7 @@ map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
 map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
 map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
 map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
+map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
 
 syntax on
 " error in < 7.4
@@ -168,7 +171,7 @@ let g:go_highlight_structs = 1
 "mutt
 "
 au BufRead /tmp/mutt-* set tw=72
-imap <C-F> <ESC>:r!goobook_vim.sh <cword><CR><ESC>
+
 " Airline
 "
 let g:airline#extensions#tabline#enabled = 1
