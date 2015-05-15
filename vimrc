@@ -8,7 +8,6 @@ Plugin 'godlygeek/csapprox'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/nerdtree'
-Plugin 'saltstack/salt-vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tcomment_vim'
@@ -20,7 +19,6 @@ Plugin 'vim-scripts/ZoomWin'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'nvie/vim-rst-tables'
 endif
 call vundle#end()
 
