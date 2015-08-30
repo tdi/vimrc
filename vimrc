@@ -2,31 +2,70 @@ let where = "desktop"
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 if where == "desktop"
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'godlygeek/csapprox'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'scrooloose/nerdtree'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'majutsushi/tagbar'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/ZoomWin'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+  Plugin 'gmarik/Vundle.vim'
+  Plugin 'bling/vim-airline'
+  Plugin 'godlygeek/csapprox'
+  Plugin 'ekalinin/Dockerfile.vim'
+  Plugin 'jlanzarotta/bufexplorer'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'chase/vim-ansible-yaml'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'tomtom/tcomment_vim'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'fatih/vim-go'
+  Plugin 'plasticboy/vim-markdown'
+  Plugin 'tpope/vim-surround'
+  Plugin 'vim-scripts/ZoomWin'
+  Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'derekwyatt/vim-scala'
 endif
 call vundle#end()
 
-map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
-map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
-map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
-map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
-map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
+if has("nvim") 
+  set backspace=2
+  " map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
+  " map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
+  " map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
+  " map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
+  function! CompileTeX()
+    let b:current_compiler = 'xelatex'
+    let &l:makeprg = "xelatex.sh +3 +b +o +n main.tex"
+    silent noautocmd make!
+  endfunction
+
+  let g:resu = ""
+  function JobHandler(job_id, data, event)
+    if a:event == 'stdout'
+       let str = self.shell.' out: '.join(a:data)
+       let g:resu = g:resu."\n".str
+    elseif a:event == 'stderr'
+      let str = self.shell.' err: '.join(a:data)
+      let g:resu = g:resu."\n".str
+    else
+      "let str = self.shell.' exited'
+      :cexpr g:resu
+      let g:resu = ""
+    endif
+  endfunction
+  let callbacks = {
+        \ 'on_stdout': function('JobHandler'),
+        \ 'on_stderr': function('JobHandler'),
+        \ 'on_exit': function('JobHandler')
+        \ }
+  map <leader>lc <Esc>:call jobstart("test.sh", extend({'shell': 'test.sh'}, callbacks))<CR>
+  map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
+
+else 
+
+  map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
+  map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
+  map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
+  map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
+  map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
+
+endif
 
 syntax on
 " error in < 7.4
@@ -111,14 +150,14 @@ map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
 
 if $TERM =~ '^screen-256color'
-    map <Esc>OH <Home>
-    map! <Esc>OH <Home>
-    map <Esc>OF <End>
-    map! <Esc>OF <End>
+  map <Esc>OH <Home>
+  map! <Esc>OH <Home>
+  map <Esc>OF <End>
+  map! <Esc>OF <End>
 endif
 
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 fu! ToggleCurline ()
   if &cursorline && &cursorcolumn 
