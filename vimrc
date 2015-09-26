@@ -1,17 +1,16 @@
-let where = "desktop"
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-if where == "desktop"
   Plugin 'gmarik/Vundle.vim'
   Plugin 'bling/vim-airline'
   Plugin 'godlygeek/csapprox'
   Plugin 'ekalinin/Dockerfile.vim'
   Plugin 'jlanzarotta/bufexplorer'
   Plugin 'scrooloose/nerdtree'
-  Plugin 'chase/vim-ansible-yaml'
+  Plugin 'pearofducks/ansible-vim'
   Plugin 'majutsushi/tagbar'
   Plugin 'tomtom/tcomment_vim'
   Plugin 'altercation/vim-colors-solarized'
+  Plugin 'junegunn/seoul256.vim'
   Plugin 'fatih/vim-go'
   Plugin 'plasticboy/vim-markdown'
   Plugin 'tpope/vim-surround'
@@ -20,15 +19,12 @@ if where == "desktop"
   Plugin 'tpope/vim-fugitive'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'derekwyatt/vim-scala'
-endif
+  Plugin 'junegunn/goyo.vim'
+  Plugin 'reedes/vim-pencil'
 call vundle#end()
 
 if has("nvim") 
   set backspace=2
-  " map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
-  " map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
-  " map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
-  " map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
   function! CompileTeX()
     let b:current_compiler = 'xelatex'
     let &l:makeprg = "xelatex.sh +3 +b +o +n main.tex"
@@ -54,17 +50,13 @@ if has("nvim")
         \ 'on_stderr': function('JobHandler'),
         \ 'on_exit': function('JobHandler')
         \ }
-  map <leader>lc <Esc>:call jobstart("test.sh", extend({'shell': 'test.sh'}, callbacks))<CR>
   map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
-
 else 
-
   map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
   map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
   map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
   map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
   map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
-
 endif
 
 syntax on
@@ -203,7 +195,13 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 
-
+let g:pencil#conceallevel = 0
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+  autocmd FileType tex          call pencil#init()
+augroup END
 
 "mutt
 "
