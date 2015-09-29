@@ -121,6 +121,9 @@ else
   " endif
 endif
 
+au FileType tex set background=light | let g:solarized_termcolors=256 | colorscheme solarized 
+
+
 cmap w!! %!sudo tee > /dev/null %
 "tab navigation
 "from Practical Vim book
