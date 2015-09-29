@@ -20,7 +20,7 @@ call vundle#begin()
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'derekwyatt/vim-scala'
   Plugin 'junegunn/goyo.vim'
-  Plugin 'reedes/vim-pencil'
+  Plugin 'chriskempson/base16-vim'
 call vundle#end()
 
 if has("nvim") 
@@ -105,18 +105,20 @@ if has('gui_running')
   colorscheme solarized
   set background=dark
 else
-  if $TERM =~ '256color'
-    set background=light
-    let g:solarized_termcolors=256
-    colorscheme solarized
-  elseif $TERM =~ '^screen'
-    set background=light
-    let g:solarized_termcolors=256
-    colorscheme solarized
-    " colorscheme wombatterm
-  else
-    colorscheme vividchalk 
-  endif
+  set background=dark
+  colorscheme base16-default
+  " if $TERM =~ '256color'
+  "   set background=light
+  "   let g:solarized_termcolors=256
+  "   colorscheme solarized
+  " elseif $TERM =~ '^screen'
+  "   set background=light
+  "   let g:solarized_termcolors=256
+  "   colorscheme solarized
+  "   " colorscheme wombatterm
+  " else
+  "   colorscheme vividchalk 
+  " endif
 endif
 
 cmap w!! %!sudo tee > /dev/null %
@@ -194,14 +196,6 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
-
-let g:pencil#conceallevel = 0
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-  autocmd FileType tex          call pencil#init()
-augroup END
 
 "mutt
 "
