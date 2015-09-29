@@ -11,6 +11,8 @@ call vundle#begin()
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'junegunn/seoul256.vim'
   Plugin 'fatih/vim-go'
+  " tabular always before vim-markdown
+  Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
   Plugin 'tpope/vim-surround'
   Plugin 'vim-scripts/ZoomWin'
@@ -181,7 +183,7 @@ let g:go_highlight_structs = 1
 
 "mutt
 "
-au BufRead /tmp/mutt-* set tw=72
+au BufRead /tmp/mutt-* set tw=78 
 
 " Airline
 "
