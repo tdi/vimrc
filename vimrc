@@ -2,7 +2,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   Plugin 'gmarik/Vundle.vim'
   Plugin 'bling/vim-airline'
-  Plugin 'godlygeek/csapprox'
   Plugin 'ekalinin/Dockerfile.vim'
   Plugin 'jlanzarotta/bufexplorer'
   Plugin 'scrooloose/nerdtree'
@@ -40,7 +39,6 @@ if has("nvim")
       let str = self.shell.' err: '.join(a:data)
       let g:resu = g:resu."\n".str
     else
-      "let str = self.shell.' exited'
       :cexpr g:resu
       let g:resu = ""
     endif
@@ -101,28 +99,12 @@ set laststatus=2
 if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
-  let g:solarized_termcolors=256
-  colorscheme solarized
-  set background=dark
 else
   set background=dark
   colorscheme base16-default
-  " if $TERM =~ '256color'
-  "   set background=light
-  "   let g:solarized_termcolors=256
-  "   colorscheme solarized
-  " elseif $TERM =~ '^screen'
-  "   set background=light
-  "   let g:solarized_termcolors=256
-  "   colorscheme solarized
-  "   " colorscheme wombatterm
-  " else
-  "   colorscheme vividchalk 
-  " endif
 endif
 
 au FileType tex set background=light | let g:solarized_termcolors=256 | colorscheme solarized 
-
 
 cmap w!! %!sudo tee > /dev/null %
 "tab navigation
@@ -137,7 +119,7 @@ nnoremap <silent> ]B :blast<CR>
 " Reselect last pasted text
 nnoremap gp `[v`]
 " highlight search matching
-" włączenie (zp) i wyłączenie (zP) korekty pisowni dla j.polskiego
+" włączenie (zp) i wyłązenie (zP) korekty pisowni dla j.polskiego
 map zp :setlocal spell spelllang=pl<CR>
 map zP :setlocal nospell<CR>
 
@@ -152,9 +134,6 @@ if $TERM =~ '^screen-256color'
   map <Esc>OF <End>
   map! <Esc>OF <End>
 endif
-
-" set cursorline
-" set cursorcolumn
 
 fu! ToggleCurline ()
   if &cursorline && &cursorcolumn 
@@ -210,22 +189,5 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 
-""" FocusMode
-function! ToggleFocusMode()
-  if (&foldcolumn != 12)
-    set laststatus=0
-    set numberwidth=10
-    set foldcolumn=12
-    set noruler
-    hi FoldColumn ctermbg=none
-    hi LineNr ctermfg=0 ctermbg=none
-    hi NonText ctermfg=0
-  else
-    set laststatus=2
-    set numberwidth=4
-    set foldcolumn=0
-    set ruler
-    execute 'colorscheme ' . 'wombatterm'
-  endif
-endfunc
-nnoremap <F1> :call ToggleFocusMode()<cr>
+"Goyo
+let g:goyo_width=100
