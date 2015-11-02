@@ -1,4 +1,5 @@
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
   Plugin 'gmarik/Vundle.vim'
   Plugin 'bling/vim-airline'
@@ -9,8 +10,8 @@ call vundle#begin()
   Plugin 'pearofducks/ansible-vim'
   Plugin 'majutsushi/tagbar'
   Plugin 'tomtom/tcomment_vim'
-  Plugin 'altercation/vim-colors-solarized'
-  Plugin 'fatih/vim-go'
+  " Plugin 'altercation/vim-colors-solarized'
+  " Plugin 'fatih/vim-go'
   " tabular always before vim-markdown
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
@@ -18,10 +19,12 @@ call vundle#begin()
   Plugin 'vim-scripts/ZoomWin'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'tpope/vim-fugitive'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'derekwyatt/vim-scala'
+  "  Plugin 'Valloric/YouetompleteMe'
+  Plugin 'Shougo/neocomplete.vim'
+  " Plugin 'derekwyatt/vim-scala'
   Plugin 'junegunn/goyo.vim'
   Plugin 'chriskempson/base16-vim'
+  Plugin 'm-kat/aws-vim'
 call vundle#end()
 
 if has("nvim") 
@@ -92,6 +95,7 @@ filetype indent on
 " set mouse in terminal to resize windows
 set mouse=a
 set laststatus=2 
+
 
 
 "GUI
@@ -192,5 +196,34 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 
+
 "Goyo
 let g:goyo_width=100
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
