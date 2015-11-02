@@ -5,11 +5,11 @@ call vundle#begin()
   Plugin 'ekalinin/Dockerfile.vim'
   Plugin 'jlanzarotta/bufexplorer'
   Plugin 'scrooloose/nerdtree'
+  Plugin 'LaTeX-Box-Team/LaTeX-Box'
   Plugin 'pearofducks/ansible-vim'
   Plugin 'majutsushi/tagbar'
   Plugin 'tomtom/tcomment_vim'
   Plugin 'altercation/vim-colors-solarized'
-  Plugin 'junegunn/seoul256.vim'
   Plugin 'fatih/vim-go'
   " tabular always before vim-markdown
   Plugin 'godlygeek/tabular'
@@ -26,11 +26,6 @@ call vundle#end()
 
 if has("nvim") 
   set backspace=2
-  function! CompileTeX()
-    let b:current_compiler = 'xelatex'
-    let &l:makeprg = "xelatex.sh +3 +b +o +n main.tex"
-    silent noautocmd make!
-  endfunction
 
   let g:resu = ""
   function JobHandler(job_id, data, event)
@@ -50,13 +45,15 @@ if has("nvim")
         \ 'on_stderr': function('JobHandler'),
         \ 'on_exit': function('JobHandler')
         \ }
-  map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
+  " map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
+  map <leader>lx <Esc>:call jobstart("rubber -s -f --pdf --module xelatex \"main\"", extend({'shell': 'rubber'}, callbacks))<CR>
 else 
   map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
   map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
   map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
   map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
-  map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
+  " map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
+  map <leader>lx <Esc>:!rubber -s -f --pdf --module xelatex "main.tex"<CR>
 endif
 
 syntax on
@@ -102,11 +99,15 @@ if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
 else
+  let base16colorspace=256
   set background=dark
-  colorscheme base16-default
+  colorscheme base16-solarized
+  " let g:solarized_termcolors=256
+  " set  background=light
+  " colorscheme solarized 
 endif
 
-au FileType tex set background=light | let g:solarized_termcolors=256 | colorscheme solarized 
+" au FileType tex set background=light | let g:solarized_termcolors=256 | colorscheme solarized 
 
 cmap w!! %!sudo tee > /dev/null %
 "tab navigation
