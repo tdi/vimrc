@@ -10,13 +10,10 @@ call vundle#begin()
   Plugin 'pearofducks/ansible-vim'
   Plugin 'majutsushi/tagbar'
   Plugin 'tomtom/tcomment_vim'
-  " Plugin 'altercation/vim-colors-solarized'
-  " Plugin 'fatih/vim-go'
   " tabular always before vim-markdown
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
   Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/ZoomWin'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'tpope/vim-fugitive'
   "  Plugin 'Valloric/YouetompleteMe'
@@ -24,6 +21,7 @@ call vundle#begin()
   " Plugin 'derekwyatt/vim-scala'
   Plugin 'junegunn/goyo.vim'
   Plugin 'chriskempson/base16-vim'
+  Plugin 'kien/ctrlp.vim'
   Plugin 'm-kat/aws-vim'
 call vundle#end()
 
@@ -96,8 +94,6 @@ filetype indent on
 set mouse=a
 set laststatus=2 
 
-
-
 "GUI
 if has('gui_running')
   set guioptions-=T  "remove toolbar
@@ -154,7 +150,6 @@ endfunction
 
 map <silent><leader>cl :call ToggleCurline()<CR>
 
-" Until I got used to it
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
@@ -193,12 +188,12 @@ au BufRead /tmp/mutt-* set tw=78
 " Airline
 "
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'wombat'
+let g:airline_theme = 'base16'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-
 
 "Goyo
 let g:goyo_width=100
+
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -212,9 +207,9 @@ inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
+  return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -226,4 +221,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+autocmd FileType aws.json setlocal foldmethod=syntax | setlocal foldlevel=4
+
+
 
