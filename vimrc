@@ -1,29 +1,27 @@
-set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-  Plugin 'gmarik/Vundle.vim'
-  Plugin 'bling/vim-airline'
-  Plugin 'ekalinin/Dockerfile.vim'
-  Plugin 'jlanzarotta/bufexplorer'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'LaTeX-Box-Team/LaTeX-Box'
-  Plugin 'pearofducks/ansible-vim'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'tomtom/tcomment_vim'
+call plug#begin('~/.vim/bundle')
+  Plug 'bling/vim-airline'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'jlanzarotta/bufexplorer'
+  Plug 'scrooloose/nerdtree'
+  Plug 'LaTeX-Box-Team/LaTeX-Box'
+  Plug 'pearofducks/ansible-vim'
+  Plug 'majutsushi/tagbar'
+  Plug 'tomtom/tcomment_vim'
   " tabular always before vim-markdown
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
-  Plugin 'tpope/vim-surround'
-  Plugin 'michaeljsmith/vim-indent-object'
-  Plugin 'tpope/vim-fugitive'
-  "  Plugin 'Valloric/YouetompleteMe'
-  Plugin 'Shougo/neocomplete.vim'
-  " Plugin 'derekwyatt/vim-scala'
-  Plugin 'junegunn/goyo.vim'
-  Plugin 'chriskempson/base16-vim'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'm-kat/aws-vim'
-call vundle#end()
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'tpope/vim-surround'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'tpope/vim-fugitive'
+  "  Plug 'Valloric/YouetompleteMe'
+  Plug 'Shougo/neocomplete.vim'
+  " Plug 'derekwyatt/vim-scala'
+  Plug 'junegunn/goyo.vim'
+  Plug 'chriskempson/base16-vim'
+  Plug 'kien/ctrlp.vim'
+  Plug 'm-kat/aws-vim'
+call plug#end()
 
 if has("nvim") 
   set backspace=2
@@ -47,14 +45,14 @@ if has("nvim")
         \ 'on_exit': function('JobHandler')
         \ }
   " map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
-  map <leader>lx <Esc>:call jobstart("rubber -s -f --pdf --module xelatex \"main\"", extend({'shell': 'rubber'}, callbacks))<CR>
+  map <leader>lx <Esc>:call jobstart("rubber -s --inplace -f --pdf --module xelatex \"main\"", extend({'shell': 'rubber'}, callbacks))<CR>
 else 
   map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
   map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
   map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
   map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
   " map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
-  map <leader>lx <Esc>:!rubber -s -f --pdf --module xelatex "main.tex"<CR>
+  map <leader>lx <Esc>:!rubber -s -f --pdf --inplace --module xelatex "main.tex"<CR>
 endif
 
 syntax on
@@ -225,5 +223,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 autocmd FileType aws.json setlocal foldmethod=syntax | setlocal foldlevel=4
 
+" Ctrlp
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 
