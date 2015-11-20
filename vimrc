@@ -3,10 +3,10 @@ call plug#begin('~/.vim/bundle')
   Plug 'bling/vim-airline'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'jlanzarotta/bufexplorer'
-  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'LaTeX-Box-Team/LaTeX-Box'
   Plug 'pearofducks/ansible-vim'
-  Plug 'majutsushi/tagbar'
+  Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'tomtom/tcomment_vim'
   " tabular always before vim-markdown
   Plug 'godlygeek/tabular'
@@ -188,6 +188,8 @@ au BufRead /tmp/mutt-* set tw=78
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16'
 let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tagbar#enabled = 0
+
 
 "Goyo
 let g:goyo_width=100
