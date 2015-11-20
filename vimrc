@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/bundle')
   Plug 'bling/vim-airline'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'jlanzarotta/bufexplorer'
+  Plug 'jlanzarotta/bufexplorer' 
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'LaTeX-Box-Team/LaTeX-Box'
   Plug 'pearofducks/ansible-vim'
@@ -17,7 +17,7 @@ call plug#begin('~/.vim/bundle')
   "  Plug 'Valloric/YouetompleteMe'
   Plug 'Shougo/neocomplete.vim'
   " Plug 'derekwyatt/vim-scala'
-  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'chriskempson/base16-vim'
   Plug 'kien/ctrlp.vim'
   Plug 'm-kat/aws-vim'
