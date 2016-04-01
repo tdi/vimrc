@@ -1,6 +1,7 @@
 
 call plug#begin('~/.vim/bundle')
   Plug 'bling/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'jlanzarotta/bufexplorer' 
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -18,9 +19,14 @@ call plug#begin('~/.vim/bundle')
   Plug 'Shougo/neocomplete.vim'
   " Plug 'derekwyatt/vim-scala'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+  Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
   Plug 'chriskempson/base16-vim'
   Plug 'kien/ctrlp.vim'
+  Plug 'hashivim/vim-terraform'
   Plug 'm-kat/aws-vim'
+  Plug 'rking/ag.vim'
+  Plug 'Konfekt/FastFold'
+  Plug 'pangloss/vim-javascript'
 call plug#end()
 
 if has("nvim") 
@@ -193,7 +199,8 @@ let g:airline#extensions#tagbar#enabled = 0
 
 "Goyo
 let g:goyo_width=100
-
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
