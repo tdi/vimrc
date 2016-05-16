@@ -27,6 +27,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'rking/ag.vim'
   Plug 'Konfekt/FastFold'
   Plug 'pangloss/vim-javascript'
+  Plug 'Valloric/MatchTagAlways' 
 call plug#end()
 
 if has("nvim") 
