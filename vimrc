@@ -1,23 +1,24 @@
 
 call plug#begin('~/.vim/bundle')
   Plug 'bling/vim-airline'
+  Plug 'easymotion/vim-easymotion'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'jlanzarotta/bufexplorer' 
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'LaTeX-Box-Team/LaTeX-Box'
+  Plug 'lervag/vimtex', {'for': 'tex'}
   Plug 'pearofducks/ansible-vim'
   Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+  Plug 'junegunn/seoul256.vim'
   Plug 'tomtom/tcomment_vim'
   " tabular always before vim-markdown
-  Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'tpope/vim-surround'
   Plug 'michaeljsmith/vim-indent-object'
+  Plug 'wellle/targets.vim'
   Plug 'tpope/vim-fugitive'
-  "  Plug 'Valloric/YouetompleteMe'
   Plug 'Shougo/neocomplete.vim'
-  " Plug 'derekwyatt/vim-scala'
+  Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
   Plug 'chriskempson/base16-vim'
@@ -54,13 +55,16 @@ if has("nvim")
   " map <leader>lx <Esc>:call jobstart("xelatex.sh +3 +b +o +n \"main.tex\"", extend({'shell': 'xelatex'}, callbacks))<CR>
   map <leader>lx <Esc>:call jobstart("rubber -s --inplace -f --pdf --module xelatex \"main\"", extend({'shell': 'rubber'}, callbacks))<CR>
 else 
-  map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
-  map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
-  map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
-  map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
+  " map <leader>lb  <Esc>:!pdflatex.sh +3 +b +o "%:p"<CR>
+  " map <leader>ll  <Esc>:!pdflatex.sh +3 +o "%:p"<CR>
+  " map <leader>lck <Esc>:!pdflatex.sh -kk "%:p"<CR>
+  " map <leader>lm <Esc>:!pdflatex.sh +3 +b +o "main.tex"<CR>
   " map <leader>lx <Esc>:!xelatex.sh +3 +b +o "main.tex"<CR>
   map <leader>lx <Esc>:!rubber -s -f --pdf --inplace --module xelatex "main.tex"<CR>
 endif
+
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
 syntax on
 " error in < 7.4
@@ -72,12 +76,15 @@ endif
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 nmap <silent> <F8> :TagbarToggle<CR>
 
+set formatoptions+=j
 set nocompatible
 set hlsearch
 " tabs and firends
 set autoindent
+set autoread
 set smartindent
 set expandtab
+set ssop-=options
 set tabstop=2
 set shiftwidth=2
 set textwidth=100
@@ -98,15 +105,18 @@ filetype indent on
 " set mouse in terminal to resize windows
 set mouse=a
 set laststatus=2 
-
+set clipboard=unnamed
 "GUI
 if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
+  let base16colorspace=256
+  set background=dark
+  colorscheme seoul256
 else
   let base16colorspace=256
   set background=dark
-  colorscheme base16-solarized
+  colorscheme seoul256
   " let g:solarized_termcolors=256
   " set  background=light
   " colorscheme solarized 
@@ -229,8 +239,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-
 autocmd FileType aws.json setlocal foldmethod=syntax | setlocal foldlevel=4
 
 " Ctrlp
