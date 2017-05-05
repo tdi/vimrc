@@ -32,6 +32,8 @@ call plug#begin('~/.vim/bundle')
   Plug 'Konfekt/FastFold'
   Plug 'pangloss/vim-javascript', {'for': 'js'}
   Plug 'Valloric/MatchTagAlways' 
+  Plug 'kana/vim-textobj-user'
+  Plug 'bps/vim-textobj-python', {'for': 'python'}
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
 call plug#end()
 
@@ -255,6 +257,7 @@ if !exists('g:neocomplcache_force_omni_patterns')
     let g:neocomplcache_force_omni_patterns = {}
   endif
 
+  autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
 
 " if has('python')
 " py << EOF
