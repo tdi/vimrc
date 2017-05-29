@@ -5,10 +5,10 @@ setlocal textwidth=79
 setlocal smarttab
 setlocal expandtab
 setlocal ai 
-let python_highlight_all = 0
-set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-set formatoptions=cq foldignore= wildignore+=*.py[co]
-set completeopt=menuone,longest,preview
-hi OverLength ctermbg=darkred ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+let python_highlight_all = 1
+" set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+" set formatoptions=cq foldignore= wildignore+=*.py[co]
+" set completeopt=menuone,longest,preview
+" hi OverLength ctermbg=darkred ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
 

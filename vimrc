@@ -2,81 +2,53 @@
 call plug#begin('~/.vim/bundle')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'bling/vim-airline'
-  Plug 'easymotion/vim-easymotion'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'morhetz/gruvbox'
   Plug 'justincampbell/vim-eighties'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'jlanzarotta/bufexplorer' 
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'lervag/vimtex'
   Plug 'pearofducks/ansible-vim'
-  Plug 'majutsushi/tagbar'
+  Plug 'Chiel92/vim-autoformat'
   Plug 'junegunn/seoul256.vim'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'm-kat/aws-vim'
+  Plug 'skywind3000/asyncrun.vim'
+  " Plug 'easymotion/vim-easymotion'
+  " Plug 'jlanzarotta/bufexplorer' 
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'majutsushi/tagbar'
   Plug 'tomtom/tcomment_vim'
   " tabular always before vim-markdown
   Plug 'plasticboy/vim-markdown'
   Plug 'tpope/vim-surround'
   Plug 'michaeljsmith/vim-indent-object'
-  Plug 'wellle/targets.vim'
   Plug 'tpope/vim-fugitive'
-  Plug 'Shougo/neocomplete.vim'
-  Plug 'Shougo/echodoc.vim'
+  " Plug 'Shougo/echodoc.vim'
   Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'lervag/vimtex'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
-  Plug 'chriskempson/base16-vim'
-  Plug 'sjl/badwolf'
-  " Plug 'kien/ctrlp.vim'
-  Plug 'm-kat/aws-vim'
-  " Plug 'rking/ag.vim'
+  Plug 'kien/ctrlp.vim'
   Plug 'Konfekt/FastFold'
-  Plug 'pangloss/vim-javascript', {'for': 'js'}
+  " Plug 'pangloss/vim-javascript', {'for': 'js'}
   Plug 'Valloric/MatchTagAlways' 
   Plug 'kana/vim-textobj-user'
   Plug 'bps/vim-textobj-python', {'for': 'python'}
+  " Plug 'heavenshell/vim-pydocstring', {'for': 'python'}
   Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  Plug 'Shougo/neocomplete.vim'
 call plug#end()
 
-" if has("nvim") 
-"   set backspace=2
-"   let g:resu = ""
-"   function JobHandler(job_id, data, event)
-"     if a:event == 'stdout'
-"       let str = self.shell.' out: '.join(a:data)
-"       let g:resu = g:resu."\n".str
-"     elseif a:event == 'stderr'
-"       let str = self.shell.' err: '.join(a:data)
-"       let g:resu = g:resu."\n".str
-"     else
-"       :cexpr g:resu
-"       let g:resu = ""
-"     endif
-"   endfunction
-"   let callbacks = {
-"         \ 'on_stdout': function('JobHandler'),
-"         \ 'on_stderr': function('JobHandler'),
-"         \ 'on_exit': function('JobHandler')
-"         \ }
-"   map <leader>lx <Esc>:call jobstart("rubber -s --inplace -f --pdf --module xelatex \"main\"", extend({'shell': 'rubber'}, callbacks))<CR>
-" else 
-"   map <leader>lx <Esc>:!rubber -s -f --pdf --inplace --module xelatex "main.tex"<CR>
-" endif
 let mapleader = ","
 
-let g:tex_flavor = "latex"
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
+
+set noshowmode
 syntax on
 " error in < 7.4
 if v:version > 704 
   set regexpengine=1
 endif
-
-" NERD
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-nmap <silent> <F8> :TagbarToggle<CR>
-
 set formatoptions+=j
 set nocompatible
 set hlsearch
@@ -111,18 +83,29 @@ set clipboard=unnamed
 if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
-  let base16colorspace=256
-  set background=dark
+  let g:seoul256_background = 235
   colorscheme seoul256
 else
-  let base16colorspace=256
+  let g:seoul256_background = 235
+
+  " colorscheme seoul256
   set background=dark
-  colorscheme seoul256
+  colorscheme gruvbox
 endif
+
+let g:tex_flavor = "latex"
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 cmap w!! %!sudo tee > /dev/null %
 nnoremap <silent> <C-h> :bprev<CR> 
 nnoremap <silent> <C-l> :bnext<CR>
+" NERD
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <F8> :TagbarToggle<CR>
 
 " Reselect last pasted text
 nnoremap gp `[v`]
@@ -169,8 +152,8 @@ map <Esc>OM <S-CR>
 " Go
 " au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-let g:go_fmt_command = "goimports"
 " " au FileType go nmap <Leader>gd <Plug>(go-doc)
+let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 "
 " au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -187,7 +170,7 @@ let g:go_highlight_structs = 1
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'base16'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tagbar#enabled = 0
 
@@ -225,7 +208,10 @@ if !has("nvim")
   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 else 
+  nnoremap <leader>t  :vsplit +terminal<cr>
+  tnoremap <esc>      <c-\><c-n>
   set inccommand=nosplit
+  set termguicolors
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#enable_auto_close_preview = 1
@@ -253,31 +239,35 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType aws.json setlocal foldmethod=syntax | setlocal foldlevel=4
+
 if !exists('g:neocomplcache_force_omni_patterns')
-    let g:neocomplcache_force_omni_patterns = {}
-  endif
+  let g:neocomplcache_force_omni_patterns = {}
+endif
 
-  autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
-
-" if has('python')
-" py << EOF
-" import os
-" import os.path, sys
-" import vim
-"
-" if 'VIRTUAL_ENV' in os.environ:
-"     project_base_dir = os.environ['VIRTUAL_ENV']
-"     sys.path.insert(0, project_base_dir)
-"     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"     execfile(activate_this, dict(__file__=activate_this))
-"     python_version = os.listdir(project_base_dir + '/lib')[0]
-"
-"     site_packages = os.path.join(project_base_dir, 'lib', python_version, 'site-packages')
-"     current_directory = os.getcwd()
-"
-"     sys.path.insert(1, site_packages)
-"     sys.path.insert(1, current_directory)
-" EOF
-" endif
+" autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+" autocmd FileType python nnoremap <silent> <leader> :AsyncRun flake8 %<Cr>
+let python_highlight_all=1
 let g:python_host_prog = '/Users/tdi/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/tdi/.pyenv/versions/neovim3/bin/python'
+
+if has('python')
+py << EOF
+import os
+import os.path, sys
+import vim
+
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+    python_version = os.listdir(project_base_dir + '/lib')[0]
+
+    site_packages = os.path.join(project_base_dir, 'lib', python_version, 'site-packages')
+    current_directory = os.getcwd()
+
+    sys.path.insert(1, site_packages)
+    sys.path.insert(1, current_directory)
+EOF
+endif
+
