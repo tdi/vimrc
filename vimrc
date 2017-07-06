@@ -41,15 +41,15 @@ call plug#end()
 
 let mapleader = ","
 
-
-
 set noshowmode
 syntax on
 " error in < 7.4
 if v:version > 704 
   set regexpengine=1
 endif
+
 set formatoptions+=j
+" in neovim ignored 
 set nocompatible
 set hlsearch
 " tabs and firends
@@ -73,40 +73,29 @@ set showcmd
 set showmatch
 set pastetoggle=<F10>
 set grepprg=grep\ -nH\ $*
-filetype plugin on
-filetype indent on 
 " set mouse in terminal to resize windows
 set mouse=a
 set laststatus=2 
 set clipboard=unnamed
-"GUI
+
+filetype plugin on
+filetype indent on 
+"GUI for vim only 
 if has('gui_running')
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
-  let g:seoul256_background = 235
   colorscheme seoul256
 else
-  let g:seoul256_background = 235
-
-  " colorscheme seoul256
   set background=dark
   colorscheme gruvbox
 endif
 
-let g:tex_flavor = "latex"
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
+"" MAPPINGS 
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPBuffer'
-
+" Plugin independent mappings
 cmap w!! %!sudo tee > /dev/null %
 nnoremap <silent> <C-h> :bprev<CR> 
 nnoremap <silent> <C-l> :bnext<CR>
-" NERD
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-nmap <silent> <F8> :TagbarToggle<CR>
-
 " Reselect last pasted text
 nnoremap gp `[v`]
 " włączenie (zp) i wyłązenie (zP) korekty pisowni dla j.polskiego
@@ -116,6 +105,18 @@ map zP :setlocal nospell<CR>
 map ze :setlocal spell spelllang=en<CR>
 map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
+
+let g:tex_flavor = "latex"
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
+
+" NERD
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <F8> :TagbarToggle<CR>
+
 
 if $TERM =~ '^screen-256color'
   map <Esc>OH <Home>
@@ -245,7 +246,7 @@ if !exists('g:neocomplcache_force_omni_patterns')
 endif
 
 " autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
-" autocmd FileType python nnoremap <silent> <leader> :AsyncRun flake8 %<Cr>
+autocmd FileType python nnoremap <silent> <leader>f :AsyncRun flake8 %<Cr>
 let python_highlight_all=1
 let g:python_host_prog = '/Users/tdi/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/tdi/.pyenv/versions/neovim3/bin/python'
