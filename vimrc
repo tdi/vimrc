@@ -1,10 +1,13 @@
-
 call plug#begin('~/.vim/bundle')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins'  }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/echodoc.vim'
+  Plug 'roxma/nvim-completion-manager'
   Plug 'bling/vim-airline'
+  Plug 'tpope/vim-unimpaired'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'w0rp/ale'
   Plug 'morhetz/gruvbox'
-  Plug 'justincampbell/vim-eighties'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'pearofducks/ansible-vim'
   Plug 'Chiel92/vim-autoformat'
@@ -14,6 +17,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'skywind3000/asyncrun.vim'
   " Plug 'easymotion/vim-easymotion'
   " Plug 'jlanzarotta/bufexplorer' 
+  Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'majutsushi/tagbar'
   Plug 'tomtom/tcomment_vim'
@@ -22,22 +26,47 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-surround'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'tpope/vim-fugitive'
-  " Plug 'Shougo/echodoc.vim'
+  Plug 'airblade/vim-gitgutter'
   Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'lervag/vimtex'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
   Plug 'kien/ctrlp.vim'
   Plug 'Konfekt/FastFold'
-  " Plug 'pangloss/vim-javascript', {'for': 'js'}
+  Plug 'pangloss/vim-javascript'
   Plug 'Valloric/MatchTagAlways' 
   Plug 'kana/vim-textobj-user'
   Plug 'bps/vim-textobj-python', {'for': 'python'}
-  " Plug 'heavenshell/vim-pydocstring', {'for': 'python'}
-  Plug 'davidhalter/jedi-vim', {'for': 'python'}
-  Plug 'zchee/deoplete-jedi', {'for': 'python'}
-  Plug 'Shougo/neocomplete.vim'
+	" ODKOMNETOWAC
+  " Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  " Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  " Plug 'Shougo/neocomplete.vim'
 call plug#end()
+
+" <leader>ld to go to definition
+autocmd FileType python nnoremap <buffer>
+  \ <leader>gd :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType python nnoremap <buffer>
+  \ <leader>K :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType python nnoremap <buffer>
+  \ <leader>gr :call LanguageClient_textDocument_rename()<cr>
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {}
+if executable('pyls')
+    " pip install python-language-server
+    let g:LanguageClient_serverCommands.python = ['pyls']
+    autocmd FileType python setlocal omnifunc=LanguageClient#complete
+    " au User lsp_setup call lsp#register_server({
+    "     \ 'name': 'pyls',
+    "     \ 'cmd': {server_info->['pyls']},
+    "     \ 'whitelist': ['python'],
+    "     \ })
+  else
+    echo "lalalal"
+    :cq
+endif
 
 let mapleader = ","
 
@@ -234,19 +263,12 @@ else
   inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 endif
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType aws.json setlocal foldmethod=syntax | setlocal foldlevel=4
-
 if !exists('g:neocomplcache_force_omni_patterns')
   let g:neocomplcache_force_omni_patterns = {}
 endif
 
-" autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
-autocmd FileType python nnoremap <silent> <leader>f :AsyncRun flake8 %<Cr>
+autocmd FileType python nnoremap <silent> <leader>f :AsyncRun flake8 %<Cr><Esc>:copen<Cr>
+nnoremap <leader>F :Autoformat<Cr>
 let python_highlight_all=1
 let g:python_host_prog = '/Users/tdi/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/tdi/.pyenv/versions/neovim3/bin/python'
@@ -263,10 +285,8 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
     python_version = os.listdir(project_base_dir + '/lib')[0]
-
     site_packages = os.path.join(project_base_dir, 'lib', python_version, 'site-packages')
     current_directory = os.getcwd()
-
     sys.path.insert(1, site_packages)
     sys.path.insert(1, current_directory)
 EOF
