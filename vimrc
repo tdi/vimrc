@@ -75,7 +75,6 @@ call plug#begin('~/.vim/bundle')
 	" ODKOMNETOWAC
   " Plug 'davidhalter/jedi-vim', {'for': 'python'}
   " Plug 'zchee/deoplete-jedi', {'for': 'python'}
-  " Plug 'Shougo/neocomplete.vim'
 call plug#end()
 
 " <leader>ld to go to definition
@@ -226,12 +225,9 @@ let g:go_highlight_structs = 1
 
 " Airline
 
-
-
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
 
 set completeopt-=preview
 
@@ -240,6 +236,7 @@ tnoremap <leader><esc>      <c-\><c-n>
 
 set inccommand=nosplit
 set termguicolors
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_auto_close_preview = 1
@@ -259,10 +256,6 @@ endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
 
 autocmd FileType python nnoremap <silent> <leader>f :AsyncRun flake8 --ignore=E501 %<Cr><Esc>:copen<Cr>
 nnoremap <leader>F :Autoformat<Cr>
