@@ -38,7 +38,8 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'junegunn/seoul256.vim'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'vim-python/python-syntax'
 Plug 'm-kat/aws-vim'
 Plug 'skywind3000/asyncrun.vim'
 " Plug 'jlanzarotta/bufexplorer'
@@ -66,37 +67,30 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 "}}}
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
-Plug 'kien/ctrlp.vim'
 Plug 'Konfekt/FastFold'
 Plug 'pangloss/vim-javascript'
 Plug 'Valloric/MatchTagAlways'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python', {'for': 'python'}
+Plug 'kassio/neoterm'
+"{{{
+
+"}}}
 " ODKOMNETOWAC
 " Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Plug 'zchee/deoplete-jedi', {'for': 'python'}
 call plug#end()
 
-" <leader>ld to go to definition
-autocmd FileType python nnoremap <buffer>
-      \ <leader>gd :call LanguageClient_textDocument_definition()<cr>
-" <leader>lh for type info under cursor
-autocmd FileType python nnoremap <buffer>
-      \ <leader>K :call LanguageClient_textDocument_hover()<cr>
-" <leader>lr to rename variable under cursor
-autocmd FileType python nnoremap <buffer>
-      \ <leader>gr :call LanguageClient_textDocument_rename()<cr>
+
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {}
 if executable('pyls')
-  " pip install python-language-server
   let g:LanguageClient_serverCommands.python = ['pyls']
   autocmd FileType python setlocal omnifunc=LanguageClient#complete
 else
   echo "No pyls"
 endif
-
 
 set noshowmode
 syntax on
@@ -106,7 +100,6 @@ endif
 
 set formatoptions+=j
 " in neovim ignored
-set nocompatible
 set hlsearch
 " tabs and firends
 set autoindent
@@ -133,26 +126,18 @@ set grepprg=grep\ -nH\ $*
 set mouse=a
 set laststatus=2
 set clipboard=unnamed
+set inccommand=nosplit
+set termguicolors
 
 
 filetype plugin on
 filetype indent on
-"GUI for vim only
-if has('gui_running')
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  colorscheme seoul256
-else
-  set background=dark
-  colorscheme gruvbox
-endif
 
-"" MAPPINGS
+set background=dark
+colorscheme gruvbox
 
 " Plugin independent mappings
 cmap w!! %!sudo tee > /dev/null %
-nnoremap <silent> <C-h> :bprev<CR>
-nnoremap <silent> <C-l> :bnext<CR>
 " Reselect last pasted text
 nnoremap gp `[v`]
 " włączenie (zp) i wyłązenie (zP) korekty pisowni dla j.polskiego
@@ -163,12 +148,10 @@ map ze :setlocal spell spelllang=en<CR>
 map zE :setlocal nospell<CR>
 map zus :setlocal spell spelllang=en_us<CR>
 
-
-
 " NERD
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-nmap <silent> <F8> :TagbarToggle<CR>
-
+nnoremap <leader>b :ls<cr>:b<space>
+nnoremap <silent> <c-n> :NERDTreeToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
 
 if $TERM =~ '^screen-256color'
   map <Esc>OH <Home>
@@ -198,32 +181,10 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
+" nnoremap <silent> <C-w> :bprev<CR>
+" nnoremap <silent> <C-> :bnext<CR>
 
-
-" nnoremap <S-CR> O<Esc>
 nnoremap <CR> o<Esc>
-" map <Esc>OM <S-CR>
-
-" Go
-" au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-" " au FileType go nmap <Leader>gd <Plug>(go-doc)
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-"
-" au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-" au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-" au FileType go nmap <leader>c <Plug>(go-coverage)
-" au FileType go nmap <Leader>ds <Plug>(go-def-split)
-" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-
-" Airline
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -233,9 +194,8 @@ set completeopt-=preview
 
 nnoremap <leader>t  :vsplit +terminal<cr>
 tnoremap <leader><esc>      <c-\><c-n>
+nnoremap <leader>F :Autoformat<Cr>
 
-set inccommand=nosplit
-set termguicolors
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
@@ -257,9 +217,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
-autocmd FileType python nnoremap <silent> <leader>f :AsyncRun flake8 --ignore=E501 %<Cr><Esc>:copen<Cr>
-nnoremap <leader>F :Autoformat<Cr>
-let python_highlight_all=1
 let g:python_host_prog = '/Users/tdi/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/tdi/.pyenv/versions/neovim3/bin/python'
 
